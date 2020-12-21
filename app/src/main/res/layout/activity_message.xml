@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#e6e6e6"
+    tools:context=".MessageActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            app:popupTheme="@style/MenuStyle">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/patch_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Patch ID"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:id="@+id/patch_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Patch Title"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="80dp"/>
+            <TextView
+                android:id="@+id/patch_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="110dp"/>
+            <TextView
+                android:id="@+id/patch_imageURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Image URL"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="140dp"/>
+            <TextView
+                android:id="@+id/patch_sender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sender"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="170dp"/>
+            <TextView
+                android:id="@+id/patch_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginTop="200dp"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+</RelativeLayout>

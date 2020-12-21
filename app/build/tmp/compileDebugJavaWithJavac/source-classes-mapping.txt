@@ -1,0 +1,60 @@
+com/example/prototype/Model/Patch.java
+ com.example.prototype.Model.Patch
+com/example/prototype/Adapter/MessageAdapter.java
+ com.example.prototype.Adapter.MessageAdapter
+ com.example.prototype.Adapter.MessageAdapter$ViewHolder
+com/example/prototype/StartActivity.java
+ com.example.prototype.StartActivity
+ com.example.prototype.StartActivity$1
+ com.example.prototype.StartActivity$2
+com/example/prototype/Model/Chat.java
+ com.example.prototype.Model.Chat
+com/example/prototype/MainActivity.java
+ com.example.prototype.MainActivity
+ com.example.prototype.MainActivity$1
+ com.example.prototype.MainActivity$ViewPageAdapter
+com/example/prototype/BuildConfig.java
+ com.example.prototype.BuildConfig
+com/example/prototype/LoginActivity.java
+ com.example.prototype.LoginActivity
+ com.example.prototype.LoginActivity$1
+ com.example.prototype.LoginActivity$1$1
+com/example/prototype/Fragments/ChatsFragment.java
+ com.example.prototype.Fragments.ChatsFragment
+ com.example.prototype.Fragments.ChatsFragment$1
+ com.example.prototype.Fragments.ChatsFragment$2
+ com.example.prototype.Fragments.ChatsFragment$3
+ com.example.prototype.Fragments.ChatsFragment$4
+com/example/prototype/SettingsActivity.java
+ com.example.prototype.SettingsActivity
+ com.example.prototype.SettingsActivity$1
+ com.example.prototype.SettingsActivity$2
+ com.example.prototype.SettingsActivity$3
+ com.example.prototype.SettingsActivity$4
+ com.example.prototype.SettingsActivity$5
+ com.example.prototype.SettingsActivity$6
+com/example/prototype/Adapter/UserAdapter.java
+ com.example.prototype.Adapter.UserAdapter
+ com.example.prototype.Adapter.UserAdapter$1
+ com.example.prototype.Adapter.UserAdapter$ViewHolder
+com/example/prototype/Fragments/ProfileFragment.java
+ com.example.prototype.Fragments.ProfileFragment
+ com.example.prototype.Fragments.ProfileFragment$1
+ com.example.prototype.Fragments.ProfileFragment$2
+ com.example.prototype.Fragments.ProfileFragment$3
+ com.example.prototype.Fragments.ProfileFragment$4
+com/example/prototype/Fragments/UsersFragment.java
+ com.example.prototype.Fragments.UsersFragment
+ com.example.prototype.Fragments.UsersFragment$1
+com/example/prototype/RegisterActivity.java
+ com.example.prototype.RegisterActivity
+ com.example.prototype.RegisterActivity$1
+ com.example.prototype.RegisterActivity$2
+ com.example.prototype.RegisterActivity$2$1
+com/example/prototype/Model/User.java
+ com.example.prototype.Model.User
+com/example/prototype/MessageActivity.java
+ com.example.prototype.MessageActivity
+ com.example.prototype.MessageActivity$1
+ com.example.prototype.MessageActivity$2
+ com.example.prototype.MessageActivity$2$1
