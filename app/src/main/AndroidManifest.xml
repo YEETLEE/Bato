@@ -29,7 +29,7 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".MessageActivity"/>
+        <activity android:name=".ViewPatchActivity"/>
 
         <activity android:name=".MainActivity" />
 

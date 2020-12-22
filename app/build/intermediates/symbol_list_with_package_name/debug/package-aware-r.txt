@@ -1133,6 +1133,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
@@ -1831,6 +1832,7 @@ drawable tick
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable wide_size
+drawable winbg
 drawable ws_action_item_background
 drawable ws_action_item_icon_background
 drawable ws_full_sad
@@ -2058,7 +2060,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id image_select
 id info
 id invisible
 id italic
@@ -2137,10 +2138,9 @@ id parent_matrix
 id password
 id password_toggle
 id patch_city
+id patch_date
 id patch_description
-id patch_id
 id patch_image
-id patch_imageURL
 id patch_send
 id patch_sender
 id patch_title
@@ -2188,6 +2188,7 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id select_dialog_listview
+id select_image
 id selected
 id shortcut
 id showCustom
@@ -2385,10 +2386,10 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_login
 layout activity_main
-layout activity_message
 layout activity_register
 layout activity_settings
 layout activity_start
+layout activity_view_patch
 layout bar_layout
 layout chat_item_left
 layout chat_item_right
@@ -2408,9 +2409,9 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout fragment_chats
-layout fragment_profile
-layout fragment_users
+layout fragment_account
+layout fragment_patches
+layout fragment_report
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title

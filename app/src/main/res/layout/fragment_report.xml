@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ReportFragment"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtVw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Grad:"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/cities"
+        android:layout_alignBottom="@+id/txtVw"
+        android:layout_toRightOf="@+id/txtVw" />
+
+
+    <EditText
+        android:id="@+id/patch_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:maxLength="30"
+        android:hint="Naslov"/>
+
+    <EditText
+        android:id="@+id/patch_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:textSize="20sp"
+        android:maxLength="200"
+        android:textStyle="bold"
+        android:maxLines="7"
+        android:padding="5dp"
+        android:background="@color/white"
+        android:hint="Opis"/>
+
+    <Button
+        android:id="@+id/select_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:text="Izaberi sliku"/>
+
+    <Button
+        android:id="@+id/patch_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:textSize="20sp"
+        android:text="Prijavi"/>
+
+</RelativeLayout>

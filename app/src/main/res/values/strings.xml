@@ -18,6 +18,7 @@
     <string name="hello_world">Hello Square World!</string>
 
     <string-array name="cities">
+        <item>Izaberi</item>
         <item>Niksic</item>
         <item>Klicevo</item>
         <item>Danilovgrad</item>

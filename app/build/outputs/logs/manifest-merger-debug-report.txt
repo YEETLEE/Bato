@@ -220,10 +220,10 @@ ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xm
 		ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:30:13-33
 	android:name
 		ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:29:13-66
-activity#com.example.prototype.MessageActivity
-ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:32:9-52
+activity#com.example.prototype.ViewPatchActivity
+ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:32:9-54
 	android:name
-		ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:32:19-50
+		ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:32:19-52
 activity#com.example.prototype.MainActivity
 ADDED from C:\Users\jasamguli\Desktop\AndroidApp\app\src\main\AndroidManifest.xml:34:9-50
 	android:name

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.prototype.MessageActivity;
+import com.example.prototype.ViewPatchActivity;
 import com.example.prototype.Model.Patch;
 import com.example.prototype.R;
 
@@ -48,11 +48,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         else{
             Glide.with(mContext).load(patch.getImageURL()).into(holder.patch_image);
         }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, MessageActivity.class);
+                Intent intent = new Intent(mContext, ViewPatchActivity.class);
                 intent.putExtra("patchId", patch.getId());
                 System.out.println(patch.getId());
                 mContext.startActivity(intent);

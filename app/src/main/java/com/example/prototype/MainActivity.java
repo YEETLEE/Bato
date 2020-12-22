@@ -1,10 +1,6 @@
 package com.example.prototype;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
-import com.example.prototype.Fragments.ProfileFragment;
-import com.example.prototype.Fragments.ChatsFragment;
-import com.example.prototype.Fragments.UsersFragment;
+import com.example.prototype.Fragments.AccountFragment;
+import com.example.prototype.Fragments.ReportFragment;
+import com.example.prototype.Fragments.PatchesFragment;
 import com.example.prototype.Model.User;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -88,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        viewPageAdapter.addFragment(new ChatsFragment(), "Prijavi");
-        viewPageAdapter.addFragment(new UsersFragment(), "Problemi");
-        viewPageAdapter.addFragment(new ProfileFragment(), "Moj profil"); // "My profile"
+        viewPageAdapter.addFragment(new ReportFragment(), "Prijavi");
+        viewPageAdapter.addFragment(new PatchesFragment(), "Problemi");
+        viewPageAdapter.addFragment(new AccountFragment(), "Moj profil"); // "My profile"
 
         viewPager.setAdapter(viewPageAdapter);  // u dodaj 3 fragnemte u ovaj view
         tabLayout.setupWithViewPager(viewPager);
