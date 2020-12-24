@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.prototype.Adapter.UserAdapter;
+import com.example.prototype.Adapter.PatchesAdapter;
 import com.example.prototype.Model.Patch;
 import com.example.prototype.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +28,7 @@ public class PatchesFragment extends Fragment {
 
     private RecyclerView recycleView;
 
-    private UserAdapter userAdapter;
+    private PatchesAdapter patchesAdapter;
     private List<Patch> mPatches;
 
 
@@ -41,13 +41,12 @@ public class PatchesFragment extends Fragment {
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mPatches = new ArrayList<Patch>();
-
         readPatches();
 
         return view;
     }
 
-    private void readPatches(){
+    private void readPatches() {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Patches");
@@ -56,18 +55,22 @@ public class PatchesFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mPatches.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Patch patch = snapshot.getValue(Patch.class);
 
                     assert patch != null;
                     assert firebaseUser != null;
-                    if (!patch.getId().equals(firebaseUser.getUid())){
-                        mPatches.add(patch);
+                    if (!patch.getId().equals(firebaseUser.getUid())) {
+//                        if (patch.getCity().equals("Klicevo")) {
+//                            mPatches.add(patch);
+//                        }
+//                        continue;
+                            mPatches.add(patch);
                     }
                 }
 
-                userAdapter = new UserAdapter(getContext(), mPatches);
-                recycleView.setAdapter(userAdapter);
+                patchesAdapter = new PatchesAdapter(getContext(), mPatches);
+                recycleView.setAdapter(patchesAdapter);
 
             }
 

@@ -1,7 +1,6 @@
 package com.example.prototype.Adapter;
 
 import android.content.Context;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class UselessAdapter extends RecyclerView.Adapter<UselessAdapter.ViewHolder> {
 
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
@@ -29,7 +28,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     FirebaseUser firebaseUser;
 
-    public MessageAdapter(android.content.Context mContext, List<Chat> mChat, String imageUrl){
+    public UselessAdapter(android.content.Context mContext, List<Chat> mChat, String imageUrl) {
         this.mChat = mChat;
         this.mContext = mContext;
         this.imageUrl = imageUrl;
@@ -37,28 +36,28 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @NonNull
     @Override
-    public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UselessAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         android.view.View view;
         if (viewType == MSG_TYPE_RIGHT) {
             view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_right, parent, false);
-        }else {
+        } else {
             view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_left, parent, false);
         }
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UselessAdapter.ViewHolder holder, int position) {
 
         Chat chat = mChat.get(position);
         String msg = chat.getMessage();
         assert msg != null;
         holder.msg_content.setText(msg);
 
-        if(imageUrl.equals("default")){
+        if (imageUrl.equals("default")) {
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        }else{
+        } else {
             Glide.with(mContext).load(imageUrl).into(holder.profile_image);
         }
 
@@ -70,12 +69,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView msg_content;
         public ImageView profile_image;
 
-        public ViewHolder(android.view.View itemView){
+        public ViewHolder(android.view.View itemView) {
             super(itemView);
 
             msg_content = itemView.findViewById(R.id.msg_content);
@@ -84,10 +83,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     @Override
-    public int getItemViewType(int position){
+    public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(mChat.get(position).getSender().equals(firebaseUser.getUid())){
+        if (mChat.get(position).getSender().equals(firebaseUser.getUid())) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;

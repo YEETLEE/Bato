@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,12 +33,8 @@ public class ViewPatchActivity extends AppCompatActivity {
     ImageView patch_image;
     TextView patch_date;
 
-    FirebaseUser firebaseUser;
     DatabaseReference reference;
     DatabaseReference reference2;
-
-    public User sender_user;
-    public Patch patch;
 
     Intent intent;
 
@@ -67,14 +65,22 @@ public class ViewPatchActivity extends AppCompatActivity {
         final String patchId = intent.getStringExtra("patchId");
         assert patchId != null;
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Patches").child(patchId);
+        if (!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
+            Intent intent = new Intent(ViewPatchActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
 
+        reference = FirebaseDatabase.getInstance().getReference("Patches").child(patchId);
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                patch = snapshot.getValue(Patch.class);
+                if (!snapshot.exists()) {
+                    System.out.println(snapshot);
+                    finish();
+                }
+
+                Patch patch = snapshot.getValue(Patch.class);
                 assert patch != null;
                 patch_title.setText(patch.getTitle());
                 patch_description.setText(patch.getDescription());
@@ -87,9 +93,10 @@ public class ViewPatchActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        sender_user = snapshot.getValue(User.class);
-                        patch_sender.setText(sender_user.getFirstName()+" "+sender_user.getLastName());
+                        User sender_user = snapshot.getValue(User.class);
+                        patch_sender.setText(sender_user.getFirstName() + " " + sender_user.getLastName());
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
@@ -99,6 +106,13 @@ public class ViewPatchActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        patch_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplikacija</string>
+    <string name="app_name">Zakrpi Me</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -23,12 +23,14 @@
         <item>Klicevo</item>
         <item>Danilovgrad</item>
         <item>Podgorica</item>
+        <item>Tuzi</item>
         <item>Zabljak</item>
         <item>Kotor</item>
+        <item>Savnik</item>
         <item>Budva</item>
         <item>Gusinje</item>
         <item>Rozaje</item>
-        <item>Andrijevia</item>
+        <item>Andrijevca</item>
         <item>Berane</item>
         <item>Bijelo Polje</item>
         <item>Herceg Novi</item>
@@ -42,5 +44,6 @@
         <item>Tivat</item>
         <item>Ulcinj</item>
     </string-array>
+    <string name="title_activity_my_patches">MyPatches</string>
 
 </resources>    

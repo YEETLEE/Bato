@@ -6,6 +6,7 @@
     tools:context=".Fragments.ReportFragment"
     android:padding="10dp">
 
+
     <TextView
         android:id="@+id/txtVw"
         android:layout_width="wrap_content"

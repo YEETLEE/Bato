@@ -21,7 +21,7 @@ public class Patch {
         this.date = date;
     }
 
-    public Patch(){
+    public Patch() {
     }
 
     public String getId() {

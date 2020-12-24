@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.prototype.Model.User;
+import com.example.prototype.MyPatchesActivity;
 import com.example.prototype.R;
+import com.example.prototype.StartActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,6 +51,8 @@ public class AccountFragment extends Fragment {
 
     CircleImageView profile_image;
     TextView username;
+    ImageView logout_image;
+    Button my_patches_btn;
 
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
@@ -63,6 +69,8 @@ public class AccountFragment extends Fragment {
 
         profile_image = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
+        logout_image = view.findViewById(R.id.logout_image);
+        my_patches_btn = view.findViewById(R.id.my_patches_btn);
 
         st_reference = FirebaseStorage.getInstance().getReference("ProfileImage");
 
@@ -75,11 +83,11 @@ public class AccountFragment extends Fragment {
                 User user = dataSnapshot.getValue(User.class);
                 assert user != null;
 
-                username.setText(user.getFirstName() +" "+ user.getLastName());
+                username.setText(user.getFirstName() + " " + user.getLastName());
                 if (user.getImageURL().equals("default"))
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 else
-                    Glide.with(getContext()).load(user.getImageURL()).into(profile_image);
+                    Glide.with(AccountFragment.this).load(user.getImageURL()).into(profile_image);
             }
 
             @Override
@@ -88,10 +96,27 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        logout_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(getActivity(), StartActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+        });
+
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFolder();
+            }
+        });
+
+        my_patches_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyPatchesActivity.class));
             }
         });
 
@@ -107,25 +132,26 @@ public class AccountFragment extends Fragment {
         startActivityForResult(intent, IMAGE_REQUEST);
     }
 
-    private String getFileExtension(Uri uri){
+    private String getFileExtension(Uri uri) {
         ContentResolver contentResolver = getContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    private void uploadImage(){
+    private void uploadImage() {
         final ProgressDialog pd = new ProgressDialog(getContext());
-        pd.setMessage("Uploading");
+        pd.setMessage("Slika se postavlja");
         pd.show();
+        pd.setCancelable(false);
 
-        if(imageUri != null){
-            final StorageReference fileReference = st_reference.child(System.currentTimeMillis()+"."+getFileExtension(imageUri));
+        if (imageUri != null) {
+            final StorageReference fileReference = st_reference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             uploadTask = fileReference.putFile(imageUri);
             uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if(!task.isSuccessful()){
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
 
@@ -134,7 +160,7 @@ public class AccountFragment extends Fragment {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
 
@@ -145,8 +171,8 @@ public class AccountFragment extends Fragment {
                         db_reference.updateChildren(hashMap);
 
                         pd.dismiss();
-                    }else{
-                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Greska", Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                     }
                 }
@@ -157,8 +183,8 @@ public class AccountFragment extends Fragment {
                     pd.dismiss();
                 }
             });
-        }else{
-            Toast.makeText(getContext(), "No image selected", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Izaberite sliku", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,11 +192,11 @@ public class AccountFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null){
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
-            if(uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
-            }else{
+            if (uploadTask != null && uploadTask.isInProgress()) {
+                Toast.makeText(getContext(), "Slika se postavlja", Toast.LENGTH_SHORT).show();
+            } else {
                 uploadImage();
             }
         }

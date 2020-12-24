@@ -1793,6 +1793,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable logout
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -2006,7 +2007,6 @@ id direct
 id disableHome
 id disablePostScroll
 id disableScroll
-id displayName
 id dragDown
 id dragEnd
 id dragLeft
@@ -2079,6 +2079,7 @@ id listMode
 id list_item
 id login
 id logout
+id logout_image
 id masked
 id media_actions
 id message
@@ -2115,6 +2116,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiPage
 id multiply
+id my_patches_btn
 id nav_controller_view_tag
 id nav_graph
 id nav_host_fragment_container
@@ -2164,6 +2166,9 @@ id reverseSawtooth
 id right
 id right_icon
 id right_side
+id rl_1
+id rl_2
+id rl_3
 id round
 id rounded
 id row_index_key
@@ -2190,6 +2195,7 @@ id search_voice_btn
 id select_dialog_listview
 id select_image
 id selected
+id sender_image
 id shortcut
 id showCustom
 id showHome
@@ -2386,6 +2392,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_login
 layout activity_main
+layout activity_my_patches
 layout activity_register
 layout activity_settings
 layout activity_start
@@ -2456,6 +2463,7 @@ layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout patch_item
+layout patch_item_miso
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -2620,6 +2628,7 @@ string search_menu_title
 string second_fragment_label
 string status_bar_notification_info_overflow
 string title_activity_location
+string title_activity_my_patches
 string ws_action_drawer_content_description
 string ws_navigation_drawer_content_description
 style AlertDialog_AppCompat

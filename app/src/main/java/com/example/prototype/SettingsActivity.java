@@ -284,7 +284,7 @@ public class SettingsActivity extends AppCompatActivity {
     // ova funkcija se poziva klikom na tick-arrow
     private void uploadFile() {
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Uploading Image....");
+        pd.setTitle("Slika se postavlja");
         pd.show();
 
         if(imageUri != null){
@@ -320,7 +320,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else {
             pd.dismiss();
-            Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Morate izabrati sliku", Toast.LENGTH_SHORT).show();
         }
     }
 }
