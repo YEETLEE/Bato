@@ -1,11 +1,13 @@
 package com.example.prototype;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,15 +28,17 @@ import com.squareup.picasso.Picasso;
 
 public class ViewPatchActivity extends AppCompatActivity {
 
-    TextView patch_title;
-    TextView patch_description;
-    TextView patch_city;
-    TextView patch_sender;
+    TextView patch_title,
+            patch_description,
+            patch_city,
+            patch_sender,
+            patch_date;
     ImageView patch_image;
-    TextView patch_date;
+    Button patch_delete_btn;
 
     DatabaseReference reference;
     DatabaseReference reference2;
+    FirebaseUser firebaseUser;
 
     Intent intent;
 
@@ -60,6 +64,7 @@ public class ViewPatchActivity extends AppCompatActivity {
         patch_sender = findViewById(R.id.patch_sender);
         patch_image = findViewById(R.id.patch_image);
         patch_date = findViewById(R.id.patch_date);
+        patch_delete_btn = findViewById(R.id.patch_delete_btn);
 
         intent = getIntent();
         final String patchId = intent.getStringExtra("patchId");
@@ -75,13 +80,11 @@ public class ViewPatchActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.exists()) {
-                    System.out.println(snapshot);
-                    finish();
-                }
+                if (!snapshot.exists()) return;
 
                 Patch patch = snapshot.getValue(Patch.class);
-                assert patch != null;
+                if (patch == null) return;
+
                 patch_title.setText(patch.getTitle());
                 patch_description.setText(patch.getDescription());
                 patch_city.setText(patch.getCity());
@@ -94,7 +97,14 @@ public class ViewPatchActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User sender_user = snapshot.getValue(User.class);
+                        if (sender_user == null)
+                            return;
+
                         patch_sender.setText(sender_user.getFirstName() + " " + sender_user.getLastName());
+
+                        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if (!sender_user.getId().equals(firebaseUser.getUid()))
+                            patch_delete_btn.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -113,6 +123,67 @@ public class ViewPatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+
+        patch_delete_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewPatchActivity.this);
+                builder.setTitle("Da li ste sigurni da zelite da obrisete krpljenje?");
+                builder.setMessage("Ova radnja nije povratna")
+                        .setPositiveButton(Html.fromHtml("<font color='#000'>DA</font>"), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                reference = FirebaseDatabase.getInstance().getReference("Patches").child(patchId);
+                                reference.addValueEventListener(new ValueEventListener() {
+                                    @SuppressLint("SetTextI18n")
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (!snapshot.exists()) return;
+
+                                        Patch patch = snapshot.getValue(Patch.class);
+                                        if (patch == null) return;
+
+                                        //delete patch from patches
+                                        snapshot.getRef().removeValue();
+                                        finish();
+
+                                        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                        reference2 = FirebaseDatabase.getInstance().getReference("Users/" + firebaseUser.getUid() + "/myPatches").child(patchId);
+                                        reference2.addValueEventListener(new ValueEventListener() {
+                                            @SuppressLint("SetTextI18n")
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                //delete patch from user's myparches
+                                                snapshot.getRef().removeValue();
+
+                                                Intent i = new Intent(ViewPatchActivity.this, MainActivity.class);
+                                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(i);
+                                                finish();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    }
+                                });
+
+
+                            }
+                        })
+                        .setNegativeButton(Html.fromHtml("<font color='#000'>NE</font>"), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+                builder.create().show();
             }
         });
 

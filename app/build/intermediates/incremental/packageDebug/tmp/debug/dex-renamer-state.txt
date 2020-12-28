@@ -1,7 +1,7 @@
-#Thu Dec 24 22:03:17 CET 2020
-base.0=C\:\\Users\\jasamguli\\Desktop\\ZakrpiMe\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Mon Dec 28 15:05:31 CET 2020
+base.0=C\:\\Users\\guli\\Desktop\\bato\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\jasamguli\\Desktop\\ZakrpiMe\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.1=C\:\\Users\\guli\\Desktop\\bato\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex

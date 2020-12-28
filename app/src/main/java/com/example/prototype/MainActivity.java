@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
-        if(!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+        if (!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
@@ -91,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
 //                    Picasso.with(MainActivity.this).load(user.getImageURL()).into(profile_image);
 //                }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
@@ -109,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    static class  ViewPageAdapter extends FragmentPagerAdapter{
+    static class ViewPageAdapter extends FragmentPagerAdapter {
 
         private final ArrayList<Fragment> fragments;
         private final ArrayList<String> titles;
 
-        ViewPageAdapter(FragmentManager fm){
+        ViewPageAdapter(FragmentManager fm) {
             super(fm);
             this.fragments = new ArrayList<>();
             this.titles = new ArrayList<>();
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             return fragments.size();
         }
 
-        public void addFragment(Fragment fragment, String title){
+        public void addFragment(Fragment fragment, String title) {
             fragments.add(fragment);
             titles.add(title);
         }

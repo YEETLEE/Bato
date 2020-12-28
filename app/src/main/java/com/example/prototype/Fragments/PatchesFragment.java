@@ -61,11 +61,15 @@ public class PatchesFragment extends Fragment {
                     assert patch != null;
                     assert firebaseUser != null;
                     if (!patch.getId().equals(firebaseUser.getUid())) {
+
+
+                        //sortiranje ide odje
+
 //                        if (patch.getCity().equals("Klicevo")) {
 //                            mPatches.add(patch);
 //                        }
 //                        continue;
-                            mPatches.add(patch);
+                        mPatches.add(patch);
                     }
                 }
 

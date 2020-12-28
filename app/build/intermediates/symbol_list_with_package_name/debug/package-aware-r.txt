@@ -2141,6 +2141,7 @@ id password
 id password_toggle
 id patch_city
 id patch_date
+id patch_delete_btn
 id patch_description
 id patch_image
 id patch_send

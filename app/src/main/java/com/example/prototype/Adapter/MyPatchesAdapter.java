@@ -45,7 +45,7 @@ public class MyPatchesAdapter extends RecyclerView.Adapter<MyPatchesAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        android.view.View view = LayoutInflater.from(mContext).inflate(R.layout.patch_item_miso, parent, false);
+        android.view.View view = LayoutInflater.from(mContext).inflate(R.layout.patch_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -53,7 +53,7 @@ public class MyPatchesAdapter extends RecyclerView.Adapter<MyPatchesAdapter.View
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         final UserPatch up = mUserPatches.get(position);
-        assert up != null;
+        if (up == null) return;
 
         reference = FirebaseDatabase.getInstance().getReference("Patches");
         reference.addValueEventListener(new ValueEventListener() {
@@ -62,7 +62,7 @@ public class MyPatchesAdapter extends RecyclerView.Adapter<MyPatchesAdapter.View
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     Patch patch = snapshot.getValue(Patch.class);
-                    assert patch != null;
+                    if (patch == null) return;
 
                     if (up.getId().equals(patch.getId())) {
                         holder.patch_title.setText(patch.getTitle());
@@ -83,7 +83,6 @@ public class MyPatchesAdapter extends RecyclerView.Adapter<MyPatchesAdapter.View
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ViewPatchActivity.class);
                 intent.putExtra("patchId", up.getId());
-                System.out.println(up.getId());
                 mContext.startActivity(intent);
             }
         });

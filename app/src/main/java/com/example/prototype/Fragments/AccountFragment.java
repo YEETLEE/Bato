@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,13 +82,18 @@ public class AccountFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                assert user != null;
+                if (user == null) return;
 
-                username.setText(user.getFirstName() + " " + user.getLastName());
-                if (user.getImageURL().equals("default"))
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
-                else
-                    Glide.with(AccountFragment.this).load(user.getImageURL()).into(profile_image);
+                try {
+                    username.setText(user.getFirstName() + " " + user.getLastName());
+                    if (user.getImageURL().equals("default"))
+                        profile_image.setImageResource(R.mipmap.ic_launcher);
+                    else
+                        Glide.with(AccountFragment.this).load(user.getImageURL()).into(profile_image);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+
             }
 
             @Override

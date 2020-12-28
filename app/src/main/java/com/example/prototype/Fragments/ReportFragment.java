@@ -153,8 +153,8 @@ public class ReportFragment extends Fragment {
                         final String userId = firebaseUser.getUid();
 
 //                        final int rndId = (int) (Math.random() * ((1000000000 - 99999999) + 1)) + 99999999;
-//                        patchId = String.valueOf(rndId);
                         String rndId = String.valueOf(System.currentTimeMillis());
+                        patchId = rndId;
 
                         final HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("id", rndId);
@@ -174,7 +174,7 @@ public class ReportFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     HashMap<String, Object> userPatchMap = new HashMap<>();
                                     userPatchMap.put(patchId, patchId);
-                                    user_reference = FirebaseDatabase.getInstance().getReference("Users/"+userId+"/myPatches/");
+                                    user_reference = FirebaseDatabase.getInstance().getReference("Users/" + userId + "/myPatches/");//.child(patchId);
                                     user_reference.updateChildren(userPatchMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -186,16 +186,17 @@ public class ReportFragment extends Fragment {
                                             }
                                         }
                                     });
+                                } else {
 
-                                    Toast.makeText(getContext(), "Hvala na prijavljivanju problema", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Prijavljivanje neuspjesno", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 }
                             }
                         });
 
-                       pd.dismiss();
+                        pd.dismiss();
                     } else {
                         Toast.makeText(getContext(), "Radnja neuspjesna", Toast.LENGTH_SHORT).show();
                         pd.dismiss();

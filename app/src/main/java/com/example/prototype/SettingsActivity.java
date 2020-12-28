@@ -225,14 +225,16 @@ public class SettingsActivity extends AppCompatActivity {
                 lastName.setText(user.getLastName());
                 email.setText(user.getEmail());
 
-                if(user.getImageURL().equals("default")){
+                if (user.getImageURL().equals("default")) {
                     change_photo_image.setImageResource(R.mipmap.ic_launcher);
-                }else{
+                } else {
                     Glide.with(SettingsActivity.this).load(user.getImageURL()).into(change_photo_image);
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
 
         // vrati se na main activity
@@ -275,7 +277,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             change_photo_image.setImageURI(imageUri);
         }
@@ -287,15 +289,15 @@ public class SettingsActivity extends AppCompatActivity {
         pd.setTitle("Slika se postavlja");
         pd.show();
 
-        if(imageUri != null){
+        if (imageUri != null) {
             reference = FirebaseDatabase.getInstance().getReference("Users").child("imageURL");
-            final StorageReference fileRef = storageReference.child(auth.getCurrentUser().getUid()+ ".jpg");
+            final StorageReference fileRef = storageReference.child(auth.getCurrentUser().getUid() + ".jpg");
             uploadTask = fileRef.putFile(imageUri);
 
             uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
-                    if(!task.isSuccessful()){
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
 
@@ -304,7 +306,7 @@ public class SettingsActivity extends AppCompatActivity {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         myUri = downloadUri.toString();
 
@@ -317,8 +319,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
-        else {
+        } else {
             pd.dismiss();
             Toast.makeText(this, "Morate izabrati sliku", Toast.LENGTH_SHORT).show();
         }

@@ -1,6 +1,7 @@
 package com.example.prototype.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.prototype.MainActivity;
 import com.example.prototype.Model.User;
 import com.example.prototype.ViewPatchActivity;
 import com.example.prototype.Model.Patch;
@@ -22,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -47,7 +51,8 @@ public class PatchesAdapter extends RecyclerView.Adapter<PatchesAdapter.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         final Patch patch = mPatches.get(position);
-        assert patch != null;
+        if (patch == null) return;
+
         holder.patch_title.setText(patch.getTitle());
         holder.patch_description.setText(patch.getDescription());
 
@@ -56,16 +61,20 @@ public class PatchesAdapter extends RecyclerView.Adapter<PatchesAdapter.ViewHold
         } else {
             Glide.with(mContext).load(patch.getImageURL()).into(holder.patch_image);
         }
-        reference = FirebaseDatabase.getInstance().getReference("Patches");
 
         reference = FirebaseDatabase.getInstance().getReference("Users").child(patch.getSender());
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 User sender_user = snapshot.getValue(User.class);
-                holder.patch_sender.setText(sender_user.getFirstName()+" "+sender_user.getLastName());
-                Glide.with(mContext).load(sender_user.getImageURL()).into(holder.sender_image);
+                holder.patch_sender.setText(sender_user.getFirstName() + " " + sender_user.getLastName());
+                try {
+                    Glide.with(mContext).load(sender_user.getImageURL()).into(holder.sender_image);
+                } catch (Exception e) {
+                    System.out.println(e + "ERROR ERRO  ERROR     ++++++++++++++");
+                }
             }
 
             @Override
@@ -92,11 +101,11 @@ public class PatchesAdapter extends RecyclerView.Adapter<PatchesAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView patch_image;
-        public ImageView sender_image;
-        public TextView patch_title;
-        public TextView patch_description;
-        public TextView patch_sender;
+        public ImageView patch_image, sender_image;
+        public TextView patch_title,
+                patch_description,
+                patch_sender;
+
 
         public ViewHolder(android.view.View itemView) {
             super(itemView);

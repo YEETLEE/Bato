@@ -26,6 +26,8 @@ public class MyPatchesActivity extends AppCompatActivity {
 
     private MyPatchesAdapter myPatchesAdapter;
     private List<UserPatch> mUserPatches;
+    DatabaseReference reference;
+    DatabaseReference reference2;
 
     FirebaseUser firebaseUser;
 
@@ -45,27 +47,40 @@ public class MyPatchesActivity extends AppCompatActivity {
         mUserPatches = new ArrayList<UserPatch>();
         readPatches(userId);
     }
+
     private void readPatches(final String userId) {
 
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users/"+userId+"/myPatches/");
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users/" + userId + "/myPatches/");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUserPatches.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (snapshot == null) {
-                        return;
-                    }
+//                    if (snapshot == null) return;
 
                     String idVal = snapshot.getValue().toString();
 
+                    System.out.println();
                     UserPatch up = new UserPatch();
                     up.setId(idVal);
                     up.setValue(idVal);
                     mUserPatches.add(up);
 
+
+//                    reference = FirebaseDatabase.getInstance().getReference("Users/" + userId + "/myPatches/");
+//                    reference2.addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                            System.out.println(snapshot);
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//                        }
+//                    });
                 }
 
                 myPatchesAdapter = new MyPatchesAdapter(MyPatchesActivity.this, mUserPatches);

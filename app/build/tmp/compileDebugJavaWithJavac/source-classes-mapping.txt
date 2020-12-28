@@ -1,29 +1,39 @@
 com/example/prototype/Model/Patch.java
  com.example.prototype.Model.Patch
+com/example/prototype/Model/UserPatch.java
+ com.example.prototype.Model.UserPatch
+com/example/prototype/Model/User.java
+ com.example.prototype.Model.User
+com/example/prototype/Model/Chat.java
+ com.example.prototype.Model.Chat
+com/example/prototype/Adapter/UselessAdapter.java
+ com.example.prototype.Adapter.UselessAdapter
+ com.example.prototype.Adapter.UselessAdapter$ViewHolder
+com/example/prototype/BuildConfig.java
+ com.example.prototype.BuildConfig
+com/example/prototype/SettingsActivity.java
+ com.example.prototype.SettingsActivity
+ com.example.prototype.SettingsActivity$1
+ com.example.prototype.SettingsActivity$2
+ com.example.prototype.SettingsActivity$3
+ com.example.prototype.SettingsActivity$4
+ com.example.prototype.SettingsActivity$5
+ com.example.prototype.SettingsActivity$6
 com/example/prototype/StartActivity.java
  com.example.prototype.StartActivity
  com.example.prototype.StartActivity$1
  com.example.prototype.StartActivity$2
-com/example/prototype/Fragments/PatchesFragment.java
- com.example.prototype.Fragments.PatchesFragment
- com.example.prototype.Fragments.PatchesFragment$1
-com/example/prototype/Model/Chat.java
- com.example.prototype.Model.Chat
-com/example/prototype/MainActivity.java
- com.example.prototype.MainActivity
- com.example.prototype.MainActivity$1
- com.example.prototype.MainActivity$ViewPageAdapter
-com/example/prototype/BuildConfig.java
- com.example.prototype.BuildConfig
-com/example/prototype/LoginActivity.java
- com.example.prototype.LoginActivity
- com.example.prototype.LoginActivity$1
- com.example.prototype.LoginActivity$1$1
-com/example/prototype/Adapter/PatchesAdapter.java
- com.example.prototype.Adapter.PatchesAdapter
- com.example.prototype.Adapter.PatchesAdapter$1
- com.example.prototype.Adapter.PatchesAdapter$2
- com.example.prototype.Adapter.PatchesAdapter$ViewHolder
+com/example/prototype/ViewPatchActivity.java
+ com.example.prototype.ViewPatchActivity
+ com.example.prototype.ViewPatchActivity$1
+ com.example.prototype.ViewPatchActivity$2
+ com.example.prototype.ViewPatchActivity$2$1
+ com.example.prototype.ViewPatchActivity$3
+ com.example.prototype.ViewPatchActivity$4
+ com.example.prototype.ViewPatchActivity$4$1
+ com.example.prototype.ViewPatchActivity$4$2
+ com.example.prototype.ViewPatchActivity$4$2$1
+ com.example.prototype.ViewPatchActivity$4$2$1$1
 com/example/prototype/Fragments/ReportFragment.java
  com.example.prototype.Fragments.ReportFragment
  com.example.prototype.Fragments.ReportFragment$1
@@ -34,25 +44,23 @@ com/example/prototype/Fragments/ReportFragment.java
  com.example.prototype.Fragments.ReportFragment$5$1
  com.example.prototype.Fragments.ReportFragment$5$1$1
  com.example.prototype.Fragments.ReportFragment$6
-com/example/prototype/Adapter/UselessAdapter.java
- com.example.prototype.Adapter.UselessAdapter
- com.example.prototype.Adapter.UselessAdapter$ViewHolder
-com/example/prototype/ViewPatchActivity.java
- com.example.prototype.ViewPatchActivity
- com.example.prototype.ViewPatchActivity$1
- com.example.prototype.ViewPatchActivity$2
- com.example.prototype.ViewPatchActivity$2$1
- com.example.prototype.ViewPatchActivity$3
-com/example/prototype/SettingsActivity.java
- com.example.prototype.SettingsActivity
- com.example.prototype.SettingsActivity$1
- com.example.prototype.SettingsActivity$2
- com.example.prototype.SettingsActivity$3
- com.example.prototype.SettingsActivity$4
- com.example.prototype.SettingsActivity$5
- com.example.prototype.SettingsActivity$6
-com/example/prototype/Model/UserPatch.java
- com.example.prototype.Model.UserPatch
+com/example/prototype/MainActivity.java
+ com.example.prototype.MainActivity
+ com.example.prototype.MainActivity$1
+ com.example.prototype.MainActivity$ViewPageAdapter
+com/example/prototype/LoginActivity.java
+ com.example.prototype.LoginActivity
+ com.example.prototype.LoginActivity$1
+ com.example.prototype.LoginActivity$1$1
+com/example/prototype/RegisterActivity.java
+ com.example.prototype.RegisterActivity
+ com.example.prototype.RegisterActivity$1
+ com.example.prototype.RegisterActivity$2
+ com.example.prototype.RegisterActivity$2$1
+ com.example.prototype.RegisterActivity$2$1$1
+com/example/prototype/Fragments/PatchesFragment.java
+ com.example.prototype.Fragments.PatchesFragment
+ com.example.prototype.Fragments.PatchesFragment$1
 com/example/prototype/Fragments/AccountFragment.java
  com.example.prototype.Fragments.AccountFragment
  com.example.prototype.Fragments.AccountFragment$1
@@ -62,19 +70,16 @@ com/example/prototype/Fragments/AccountFragment.java
  com.example.prototype.Fragments.AccountFragment$5
  com.example.prototype.Fragments.AccountFragment$6
  com.example.prototype.Fragments.AccountFragment$7
+com/example/prototype/Adapter/PatchesAdapter.java
+ com.example.prototype.Adapter.PatchesAdapter
+ com.example.prototype.Adapter.PatchesAdapter$1
+ com.example.prototype.Adapter.PatchesAdapter$2
+ com.example.prototype.Adapter.PatchesAdapter$ViewHolder
 com/example/prototype/MyPatchesActivity.java
  com.example.prototype.MyPatchesActivity
  com.example.prototype.MyPatchesActivity$1
-com/example/prototype/RegisterActivity.java
- com.example.prototype.RegisterActivity
- com.example.prototype.RegisterActivity$1
- com.example.prototype.RegisterActivity$2
- com.example.prototype.RegisterActivity$2$1
- com.example.prototype.RegisterActivity$2$1$1
 com/example/prototype/Adapter/MyPatchesAdapter.java
  com.example.prototype.Adapter.MyPatchesAdapter
  com.example.prototype.Adapter.MyPatchesAdapter$1
  com.example.prototype.Adapter.MyPatchesAdapter$2
  com.example.prototype.Adapter.MyPatchesAdapter$ViewHolder
-com/example/prototype/Model/User.java
- com.example.prototype.Model.User
